@@ -100,7 +100,7 @@ Backend services for Wahdapp mobile application.
 ## Prayer [/prayer]
 
 ### Query nearby prayers on feed [POST /prayer/feed]
- Queries the nearby prayers according to factors such as user's geolocation, filter preferences and gender.
+ Queries the nearby prayers according to factors such as user's geolocation, filter preferences and gender. Requires pagination feature.
 + Request (application/json)
     + Header
         Authorization: Token 123e4567-e89b-12d3-a456-426655440000
@@ -202,6 +202,101 @@ Backend services for Wahdapp mobile application.
 + Response 500 (application/json)
     + Attributes (Failure Response)
 
+### Retrieve user's past invitations amount [GET /prayer/invitations/amount?user_id={user_id}]
+ Retrieves the total number of times a user invited in the past.
++ Parameter
+    + user_id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
+        ID of a user.
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+        + data (object, required)
+            + amount: 10 (number, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Retrieve user's past invitations [GET /prayer/invitations?user_id={user_id}]
+ Retrieves a list of user's past invitations. Requires pagination feature.
++ Parameter
+    + user_id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
+        ID of a user.
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+        + data (array, required)
+            + (Prayer object)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Retrieve user's participated history amount [GET /prayer/participated/amount?user_id={user_id}]
+ Retrieves the total number of times a user participated in the past.
++ Parameter
+    + user_id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
+        ID of a user.
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+        + data (object, required)
+            + amount: 10 (number, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Retrieve user's participated history [GET /prayer/participated?user_id={user_id}]
+ Retrieves a list of prayers a user has participated. Requires pagination feature.
++ Parameter
+    + user_id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
+        ID of a user.
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+        + data (array, required)
+            + (Prayer object)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
 
 ### Join prayer [GET /prayer/join?id={id}]
  Toggler for joining or leaving a prayer.
