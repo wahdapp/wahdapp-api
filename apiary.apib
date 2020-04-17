@@ -1,0 +1,283 @@
+FORMAT: 1A
+HOST: https://api.wahd.app/
+
+# Wahdapp
+
+Backend services for Wahdapp mobile application.
+
+## User [/user]
+
+### Create new user [POST /user]
+ Creates a new user.
++ Request (application/json)
+    + Attributes
+        + uid: `123e4567-e89b-12d3-a456-426655440000` (string , required)
+            User's uid given by Firebase.
+        + full_name: `Ahmad Ali` (string , required)
+            User's full name.
+        + email: `ahmad@gmail.com` (string , required)
+            User’s email address.
+        + gender: `M` (string, required)
+            Gender of the user.
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Get user info [GET /user]
+ Gets the general info of a user.
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        
+    + Attributes
+        + id: `123e4567-e89b-12d3-a456-426655440000` (string , required)
+            ID of a user.
+            
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+        + data (User object, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Update user name [PATCH /user]
+ Update a user's full name
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        
+    + Attributes
+        + full_name: `Ahmad Ali` (string , required)
+            New full name to be changed.
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Delete user account [DELETE /user]
+ Deletes a user's account as well as its related documents
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+## Prayer [/prayer]
+
+### Query nearby prayers on feed [POST /prayer/feed]
+ Queries the nearby prayers according to factors such as user's geolocation, filter preferences and gender.
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+    
+    + Attributes
+        + geohash: `wsqqdh95u` (string, required)
+            Hash string of user's current location.
+        + selected_prayers: fajr, dhuhr, asr (array, required)
+            + (string)
+        + timestamp: `2020-04-30T22:35:00+08:00` (string, required)
+            Current timestamp of the user.
+        + filter_preference: (object, required)
+            + distance: 3 (number, required)
+                The maximum distance of the prayer (in kilometers)
+            + minimum_participants: 0 (number, required)
+                The minimum number which the user want the prayer to at least have.
+            + same_gender: true (boolean)
+                (Women only) If the prayer is organized by women.
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+        + data (array, required)
+            + (Prayer object)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Query nearby prayers on map [POST /prayer/map]
+ Queries the nearby prayers from the location on the map.
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+    
+    + Attributes
+        + geohash: `wsqqdh95u` (string, required)
+            Hash string of user's current location.
+        + timestamp: `2020-04-30T22:35:00+08:00` (string, required)
+            Current timestamp of the user.
+        + filter_preference: (object, required)
+            + distance: 3 (number, required)
+                The maximum distance of the prayer (in kilometers)
+            + minimum_participants: 0 (number, required)
+                The minimum number which the user want the prayer to at least have.
+            + same_gender: true (boolean)
+                (Women only) If the prayer is organized by women.
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+        + data (array, required)
+            + (Prayer object)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Create new prayer [POST /prayer]
+ Creates a new prayer invitation.
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+    
+    + Attributes
+        + geohash: `wsqqdh95u` (string, required)
+            Hash string of prayer's location.
+        + selected_prayer: `fajr` (string, required)
+            The selected prayer of the invitation.
+        + schedule_time: `2020-04-30T22:35:00+08:00` (string, required)
+            Scheduled time of the invitation.
+        + description: `Please come join us` (string, required)
+            Description of the invitation.
+        + guests: (object, required)
+            + male: 3 (number, required)
+            + female: 0 (number, required)
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+        + data (Prayer object, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+
+### Join prayer [GET /prayer/join?id={id}]
+ Toggler for joining or leaving a prayer.
++ Parameter
+    + id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
+        ID of the prayer.
+        
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Delete prayer [DELETE /prayer?id={id}]
+ Deletes a prayer.
++ Parameter
+    + id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
+        ID of the prayer.
+
++ Request (application/json)
+    + Header
+        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+
+# Data Structures
+
+## User object (object)
++ id (string, required)
++ full_name (string, required)
++ email (string, required)
++ gender (string, required)
+
+## Prayer object (object)
++ id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
+    ID string of the prayer.
++ prayer: `fajr` (string, required)
+    The prayer to be performed.
++ geohash: `wsqqdh95u` (string, required)
+    Hash string of the prayer location.
++ inviter: (User object, required)
+    The inviter of the prayer
++ participants: 123e4567, 223e4567 (array, required)
+    ID of the participants of the prayer.
+    + (string)
++ guests: (object, required)
+    + male: 3 (number, required)
+    + female: 0 (number, required)
+
+## Response Status (enum[string])
++ success
++ failure
+
+## Failure Response (object)
++ status (Response Status, required)
++ error: Error message (string, required)
