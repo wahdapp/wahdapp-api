@@ -10,15 +10,8 @@ Backend services for Wahdapp mobile application.
 ### Create new user [POST /user]
  Creates a new user.
 + Request (application/json)
-    + Attributes
-        + uid: `123e4567-e89b-12d3-a456-426655440000` (string , required)
-            User's uid given by Firebase.
-        + full_name: `Ahmad Ali` (string , required)
-            User's full name.
-        + email: `ahmad@gmail.com` (string , required)
-            User’s email address.
-        + gender: `M` (string, required)
-            Gender of the user.
+    + Attributes (User object)
+    
 + Response 200 (application/json)
     + Attributes
         + status (Response Status, required)
@@ -32,15 +25,15 @@ Backend services for Wahdapp mobile application.
 + Response 500 (application/json)
     + Attributes (Failure Response)
 
-### Get user info [GET /user]
+### Get user info [GET /user?user_id={user_id}]
  Gets the general info of a user.
+
++ Parameter
+    + user_id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
+        ID of a user.
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
-        
-    + Attributes
-        + id: `123e4567-e89b-12d3-a456-426655440000` (string , required)
-            ID of a user.
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
             
 + Response 200 (application/json)
     + Attributes
@@ -60,7 +53,7 @@ Backend services for Wahdapp mobile application.
  Update a user's full name
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
         
     + Attributes
         + full_name: `Ahmad Ali` (string , required)
@@ -82,7 +75,7 @@ Backend services for Wahdapp mobile application.
  Deletes a user's account as well as its related documents
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
         
 + Response 200 (application/json)
     + Attributes
@@ -103,7 +96,7 @@ Backend services for Wahdapp mobile application.
  Queries the nearby prayers according to factors such as user's geolocation, filter preferences and gender. Requires pagination feature.
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
     
     + Attributes
         + geohash: `wsqqdh95u` (string, required)
@@ -139,7 +132,7 @@ Backend services for Wahdapp mobile application.
  Queries the nearby prayers from the location on the map.
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
     
     + Attributes
         + geohash: `wsqqdh95u` (string, required)
@@ -173,7 +166,7 @@ Backend services for Wahdapp mobile application.
  Creates a new prayer invitation.
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
     
     + Attributes
         + geohash: `wsqqdh95u` (string, required)
@@ -209,7 +202,7 @@ Backend services for Wahdapp mobile application.
         ID of a user.
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
         
 + Response 200 (application/json)
     + Attributes
@@ -233,7 +226,7 @@ Backend services for Wahdapp mobile application.
         ID of a user.
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
         
 + Response 200 (application/json)
     + Attributes
@@ -257,7 +250,7 @@ Backend services for Wahdapp mobile application.
         ID of a user.
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
         
 + Response 200 (application/json)
     + Attributes
@@ -281,7 +274,7 @@ Backend services for Wahdapp mobile application.
         ID of a user.
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
         
 + Response 200 (application/json)
     + Attributes
@@ -306,7 +299,7 @@ Backend services for Wahdapp mobile application.
         
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
         
 + Response 200 (application/json)
     + Attributes
@@ -329,7 +322,7 @@ Backend services for Wahdapp mobile application.
 
 + Request (application/json)
     + Header
-        Authorization: Token 123e4567-e89b-12d3-a456-426655440000
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
         
 + Response 200 (application/json)
     + Attributes
@@ -348,10 +341,10 @@ Backend services for Wahdapp mobile application.
 # Data Structures
 
 ## User object (object)
-+ id (string, required)
-+ full_name (string, required)
-+ email (string, required)
-+ gender (string, required)
++ id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
++ full_name: `Ahmad Ali` (string, required)
++ email: `ahmad@email.com` (string, required)
++ gender: `M` (string, required)
 
 ## Prayer object (object)
 + id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
