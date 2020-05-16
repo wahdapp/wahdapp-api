@@ -390,16 +390,49 @@ Backend services for Wahdapp mobile application.
 + Response 500 (application/json)
     + Attributes (Failure Response)
 
+## Report [/report]
+
+### Report prayer [POST /report/prayer]
+ Reports about a prayer. Also sends a report to the #report slack channel.
+ 
++ Request (application/json)
+    + Header
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+    + Attributes
+        + category (Prayer Report Category, required)
+            Category of the report.
+        + description (string)
+            Additional description about the report.
+    
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
 # Data Structures
 
+## Prayer Report Category (enum[number])
++ 0 - `Spam`
++ 1 - `Fake`
++ 2 - `Threat`
++ 3 - `Others`
+
 ## Prayer types (enum[string])
-+ Fajr - `fajr`
-+ Dhuhr - `dhuhr`
-+ Asr - `asr`
-+ Maghrib - `maghrib`
-+ Isha - `isha`
-+ Jumuah - `jumuah`
-+ Janazah - `janazah`
++ fajr - `Fajr`
++ dhuhr - `Dhuhr`
++ asr - `Asr`
++ maghrib - `Maghrib`
++ isha - `Isha`
++ jumuah - `Jumuah`
++ janazah - `Janazah`
 
 ## User object (object)
 + id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
