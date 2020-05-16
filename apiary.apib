@@ -49,6 +49,34 @@ Backend services for Wahdapp mobile application.
 + Response 500 (application/json)
     + Attributes (Failure Response)
 
+### Update Filter Preference [PATCH /user/filter]
+ Update a user's filter preferences.
++ Request (application/json)
+    + Header
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        
+    + Attributes
+        + selected_prayers: fajr, dhuhr, asr, maghrib, isha (array , required)
+            The prayers which the users only want to see.
+        + distance: 3 (number, required)
+            The maximum distance (in kilometers) between the user's location and the prayer's location.
+        + minimum_participants: 0 (number, required)
+            The minimum amount of people participating the prayer.
+        + same_gender: false (boolean)
+            (Only for women, optional) If true, only show prayers organized by women.
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
 ### Update user name [PATCH /user]
  Update a user's full name
 + Request (application/json)
@@ -292,7 +320,7 @@ Backend services for Wahdapp mobile application.
     + Attributes (Failure Response)
 
 ### Join prayer [GET /prayer/join?id={id}]
- Toggler for joining or leaving a prayer.
+ Toggler for joining or leaving a prayer. Sends a push notification to the organizer.
 + Parameter
     + id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
         ID of the prayer.
@@ -337,8 +365,41 @@ Backend services for Wahdapp mobile application.
 + Response 500 (application/json)
     + Attributes (Failure Response)
 
+## Notification [/notification]
+
+### Register device token [POST /registerToken]
+ Registers a user's push notification token.
+ 
++ Request (application/json)
+    + Header
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+    + Attributes
+        + token: `123e4567e89b12d3a456426655440000` (string, required)
+            User's device token.
+    
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
 
 # Data Structures
+
+## Prayer types (enum[string])
++ Fajr - `fajr`
++ Dhuhr - `dhuhr`
++ Asr - `asr`
++ Maghrib - `maghrib`
++ Isha - `isha`
++ Jumuah - `jumuah`
++ Janazah - `janazah`
 
 ## User object (object)
 + id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
