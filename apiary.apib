@@ -60,8 +60,8 @@ Backend services for Wahdapp mobile application.
             The prayers which the users only want to see.
         + distance: 3 (number, required)
             The maximum distance (in kilometers) between the user's location and the prayer's location.
-        + minimum_participants: 0 (number, required)
-            The minimum amount of people participating the prayer.
+        + minimum_participants: 0 (number)
+            (Only for women, optional) The minimum amount of people participating the prayer. *This should only apply if the organizer is male*.
         + same_gender: false (boolean)
             (Only for women, optional) If true, only show prayers organized by women.
 + Response 200 (application/json)
@@ -136,8 +136,8 @@ Backend services for Wahdapp mobile application.
         + filter_preference: (object, required)
             + distance: 3 (number, required)
                 The maximum distance of the prayer (in kilometers)
-            + minimum_participants: 0 (number, required)
-                The minimum number which the user want the prayer to at least have.
+            + minimum_participants: 0 (number)
+                (Women only) The minimum number which the user want the prayer to at least have.
             + same_gender: true (boolean)
                 (Women only) If the prayer is organized by women.
         
@@ -170,8 +170,8 @@ Backend services for Wahdapp mobile application.
         + filter_preference: (object, required)
             + distance: 3 (number, required)
                 The maximum distance of the prayer (in kilometers)
-            + minimum_participants: 0 (number, required)
-                The minimum number which the user want the prayer to at least have.
+            + minimum_participants: 0 (number)
+                (Women only) The minimum number which the user want the prayer to at least have.
             + same_gender: true (boolean)
                 (Women only) If the prayer is organized by women.
         
