@@ -120,7 +120,7 @@ Backend services for Wahdapp mobile application.
 
 ## Prayer [/prayer]
 
-### Query nearby prayers on feed [POST /prayer/feed]
+### Query nearby prayers on feed [POST /prayer/query]
  Queries the nearby prayers according to factors such as user's geolocation, filter preferences and gender. Requires pagination feature.
 + Request (application/json)
     + Header
@@ -133,6 +133,8 @@ Backend services for Wahdapp mobile application.
             + (string)
         + timestamp: `2020-04-30T22:35:00+08:00` (string, required)
             Current timestamp of the user.
+        + type: `feed OR map` (string, required)
+            Type of the query request.
         + filter_preference: (object, required)
             + distance: 3 (number, required)
                 The maximum distance of the prayer (in kilometers)
@@ -156,39 +158,6 @@ Backend services for Wahdapp mobile application.
 + Response 500 (application/json)
     + Attributes (Failure Response)
 
-### Query nearby prayers on map [POST /prayer/map]
- Queries the nearby prayers from the location on the map.
-+ Request (application/json)
-    + Header
-        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
-    
-    + Attributes
-        + geohash: `wsqqdh95u` (string, required)
-            Hash string of user's current location.
-        + timestamp: `2020-04-30T22:35:00+08:00` (string, required)
-            Current timestamp of the user.
-        + filter_preference: (object, required)
-            + distance: 3 (number, required)
-                The maximum distance of the prayer (in kilometers)
-            + minimum_participants: 0 (number)
-                (Women only) The minimum number which the user want the prayer to at least have.
-            + same_gender: true (boolean)
-                (Women only) If the prayer is organized by women.
-        
-+ Response 200 (application/json)
-    + Attributes
-        + status (Response Status, required)
-        + data (array, required)
-            + (Prayer object)
-
-+ Response 400 (application/json)
-    + Attributes (Failure Response)
-+ Response 401 (application/json)
-    + Attributes (Failure Response)
-+ Response 404 (application/json)
-    + Attributes (Failure Response)
-+ Response 500 (application/json)
-    + Attributes (Failure Response)
 
 ### Create new prayer [POST /prayer]
  Creates a new prayer invitation.
