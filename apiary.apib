@@ -127,8 +127,10 @@ Backend services for Wahdapp mobile application.
         Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
     
     + Attributes
-        + geohash: `wsqqdh95u` (string, required)
-            Hash string of user's current location.
+        + lat: `34.345` (number, required)
+            User's current location's latitude.
+        + lng: `123.345` (number, required)
+            User's current location's longitude.
         + selected_prayers: fajr, dhuhr, asr (array, required)
             + (string)
         + timestamp: `2020-04-30T22:35:00+08:00` (string, required)
