@@ -141,25 +141,25 @@ Backend services for Wahdapp mobile application.
 
 ## Prayer [/prayer]
 
-### Query nearby prayers [GET /prayer/query]
+### Query nearby prayers [GET /prayer/query?lat={lat}&lng={lng}&selected_prayer={selected_prayer}&timestamp={timestamp}&type={type}&sortBy={sortBy}]
  Queries the nearby prayers according to factors such as user's geolocation, filter preferences and gender. Requires pagination feature.
 + Request (application/json)
     + Header
         Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
     
-    + Attributes
-        + lat: `34.345` (number, required)
-            User's current location's latitude.
-        + lng: `123.345` (number, required)
-            User's current location's longitude.
-        + selected_prayer: fajr, dhuhr, asr (array, required)
-            The prayer to be performed.
-        + timestamp: `2020-04-30T22:35:00+08:00` (string, required)
-            Current timestamp of the user.
-        + type: `feed OR map` (string, required)
-            Type of the query request.
-        + sortBy: `distance OR new` (string, required)
-            Sort method. Default is by distance.
++ Parameter
+    + lat: `34.345` (number, required)
+        User's current location's latitude.
+    + lng: `123.345` (number, required)
+        User's current location's longitude.
+    + selected_prayer: fajr, dhuhr, asr (array, required)
+        The prayer to be performed.
+    + timestamp: `2020-04-30T22:35:00+08:00` (string, required)
+        Current timestamp of the user.
+    + type: `feed OR map` (string, required)
+        Type of the query request.
+    + sortBy: `distance OR new` (string, required)
+        Sort method. Default is by distance.
         
 + Response 200 (application/json)
     + Attributes
