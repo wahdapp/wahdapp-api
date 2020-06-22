@@ -444,8 +444,11 @@ Backend services for Wahdapp mobile application.
     ID string of the prayer.
 + prayer: `fajr` (string, required)
     The prayer to be performed.
-+ geohash: `wsqqdh95u` (string, required)
-    Hash string of the prayer location.
++ location:
+    + lat: `40.23` (number, required)
+        Latitude of the prayer location.
+    + lng `123.45` (number, required)
+        Longitude of the prayer location.
 + inviter: (User object, required)
     The inviter of the prayer
 + participants: 123e4567, 223e4567 (array, required)
