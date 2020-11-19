@@ -120,6 +120,52 @@ Backend services for Wahdapp mobile application.
 + Response 500 (application/json)
     + Attributes (Failure Response)
 
+### Update user locale [PATCH /user/locale]
+ Update a user's locale preference
++ Request (application/json)
+    + Header
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        
+    + Attributes
+        + locale: `zh_hant` (string , required)
+            Locale code.
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Set user location [POST /user/location]
+ Sets a user's location for receiving new prayer notifications
++ Request (application/json)
+    + Header
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        
+    + Attributes
+        + lat: `34.345` (number , required)
+            Latitude of the location.
+        + lng: `34.345` (number, required)
+            Longitude of the location.add locat
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
 ### Delete user account [DELETE /user]
  Deletes a user's account as well as its related documents
 + Request (application/json)
@@ -354,9 +400,9 @@ Backend services for Wahdapp mobile application.
 + Response 500 (application/json)
     + Attributes (Failure Response)
 
-## Notification [/notification]
+## Notification [/device-token]
 
-### Register device token [POST /registerToken]
+### Register device token [POST /device-token]
  Registers a user's push notification token.
  
 + Request (application/json)
@@ -365,6 +411,26 @@ Backend services for Wahdapp mobile application.
     + Attributes
         + token: `123e4567e89b12d3a456426655440000` (string, required)
             User's device token.
+    
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+### Delete device token [DELETE /device-token]
+ Deletes a user's push notification token. Should be called when user logs off from the app.
+ 
++ Request (application/json)
+    + Header
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
     
 + Response 200 (application/json)
     + Attributes
