@@ -10,7 +10,15 @@ Backend services for Wahdapp mobile application.
 ### Create new user [POST /user]
  Creates a new user.
 + Request (application/json)
-    + Attributes (User object)
+    + Attributes
+        + uid: `123e4567-e89b-12d3-a456-426655440000` (string, required)
+            ID of a user (received from Firebase)
+        + full_name: `Ahmad Ali` (string, required)
+            User's full name.
+        + email: `ahmad@email.com` (string, required)
+            User's email
+        + gender: `M` (string, required)
+            User's gender.
     
 + Response 200 (application/json)
     + Attributes
@@ -38,7 +46,7 @@ Backend services for Wahdapp mobile application.
 + Response 200 (application/json)
     + Attributes
         + status (Response Status, required)
-        + data (User object, required)
+        + data (User Private Info, required)
 
 + Response 400 (application/json)
     + Attributes (Failure Response)
@@ -491,11 +499,22 @@ Backend services for Wahdapp mobile application.
 + jumuah - `Jumuah`
 + janazah - `Janazah`
 
-## User object (object)
+## User Public Info (object)
 + id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
 + full_name: `Ahmad Ali` (string, required)
 + email: `ahmad@email.com` (string, required)
 + gender: `M` (string, required)
+
+## User Private Info (object)
++ id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
++ full_name: `Ahmad Ali` (string, required)
++ email: `ahmad@email.com` (string, required)
++ gender: `M` (string, required)
++ location: (object, required)
+    + lat: `40.23` (number, required)
+    + lng: `123.45` (number, required)
++ locale: `zh_hant` (string, required)
++ device_token: `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9` (string)
 
 ## Filter Preference (object)
 + selected_prayers: fajr, dhuhr, asr, maghrib, isha (array , required)
@@ -515,7 +534,7 @@ Backend services for Wahdapp mobile application.
         Latitude of the prayer location.
     + lng: `123.45` (number, required)
         Longitude of the prayer location.
-+ inviter: (User object, required)
++ inviter: (User Public Info, required)
     The inviter of the prayer
 + participants: 123e4567, 223e4567 (array, required)
     ID of the participants of the prayer.
