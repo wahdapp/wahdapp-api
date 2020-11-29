@@ -230,6 +230,30 @@ Backend services for Wahdapp mobile application.
 + Response 500 (application/json)
     + Attributes (Failure Response)
 
+### Get Single Prayer [GET /prayer?id={id}]
+ Retrieves a single prayer via prayer id.
++ Request (application/json)
+    + Header
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+    
++ Parameter
+    + id: `123e4567-e89b-12d3-a456-426655440000` (number, required)
+        The ID of the prayer to be retrieved.
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+        + data (Prayer object, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
 
 ### Create new prayer [POST /prayer]
  Creates a new prayer invitation.
