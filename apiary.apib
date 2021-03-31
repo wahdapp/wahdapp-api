@@ -39,6 +39,7 @@ Backend services for Wahdapp mobile application.
 + Parameter
     + user_id: `123e4567-e89b-12d3-a456-426655440000` (string, required)
         ID of a user.
+
 + Request (application/json)
     + Header
         Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
@@ -432,6 +433,36 @@ Backend services for Wahdapp mobile application.
 + Response 500 (application/json)
     + Attributes (Failure Response)
 
+### Translate prayer description [GET /prayer/translate?text={text}&src={src}&dest={dest}]
+ Translates a given string to the specified locale.
++ Parameter
+    + text: `Let's prayer together` (string, required)
+        Prayer description text.
+    + src: `en` (Locales)
+        The locale of the original text to be translated from.
+    + dest: `zh_hant` (Locales, required)
+        The locale of the text to be translated to.
+        
++ Request (application/json)
+    + Header
+        Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        
++ Response 200 (application/json)
+    + Attributes
+        + status (Response Status, required)
+        + data (object, required)
+            + text: `來一起禮拜吧` (string, required)
+
++ Response 400 (application/json)
+    + Attributes (Failure Response)
++ Response 401 (application/json)
+    + Attributes (Failure Response)
++ Response 404 (application/json)
+    + Attributes (Failure Response)
++ Response 500 (application/json)
+    + Attributes (Failure Response)
+
+
 ## Notification [/device-token]
 
 ### Register device token [POST /device-token]
@@ -513,6 +544,16 @@ Backend services for Wahdapp mobile application.
 + 1 - `Fake`
 + 2 - `Threat`
 + 3 - `Others`
+
+## Locales (enum[string])
++ ar - `Arabic`
++ en - `English`
++ fr - `French`
++ id - `Indonesian`
++ ru - `Russian`
++ tr - `Turkish`
++ zh_hant - `Traditional Chinese`
++ zh_hans - `Simplified Chinese`
 
 ## Prayer types (enum[string])
 + fajr - `Fajr`
